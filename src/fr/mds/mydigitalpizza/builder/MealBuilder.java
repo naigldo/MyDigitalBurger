@@ -1,37 +1,50 @@
 package fr.mds.mydigitalpizza.builder;
 
+import fr.mds.mydigitalpizza.classes.CarGame;
+import fr.mds.mydigitalpizza.classes.ChickenBurger;
+import fr.mds.mydigitalpizza.classes.Coke;
 import fr.mds.mydigitalpizza.classes.Meal;
+import fr.mds.mydigitalpizza.classes.MiniBurger;
+import fr.mds.mydigitalpizza.classes.Pepsi;
+import fr.mds.mydigitalpizza.classes.VegBurger;
+import fr.mds.mydigitalpizza.interfaces.Item;
 import fr.mds.mydigitalpizza.interfaces.Packing;
 
 public class MealBuilder {
 	protected String name;
     protected Packing packing;
     protected float price;
-    public Pizza creerPizza() {
-        return new Pizza();
-    }
+    
+    private Meal meal = new Meal();
 
-    public abstract void monterPate();
-    public abstract void monterSauce();
-    public abstract void monterIngredients();
-
-    public Meal prepareVegMeal() {
-        final Meal meal = new Meal();
-
-        meal.setName(this.name);
-        meal.setSauce(this.packing);
-        meal.setIngredients(this.price);
-
-        return meal;
+    public MealBuilder prepareVegMeal() {
+        meal.addItem(new VegBurger());
+        meal.addItem(new Coke());
+        
+        return this;
     }
     
-    public Meal prepareNonVegMeal() {
-        final Meal meal = new Meal();
+    public MealBuilder prepareNonVegMeal() {
+    	meal.addItem(new ChickenBurger());
+    	meal.addItem(new Pepsi());
 
-        meal.setPate(this.pate);
-        meal.setSauce(this.sauce);
-        meal.setIngredients(this.ingredients);
+        return this;
+    }
+    
+    public MealBuilder prepareChildMeal() {
+    	meal.addItem(new MiniBurger());
+    	meal.addItem(new Coke());
+    	meal.addItem(new CarGame());
 
-        return meal;
+        return this;
+    }
+    
+    public MealBuilder addItem(Item item) {
+    	meal.addItem(item);
+    	return this;
+    }
+    
+    public Meal build() {
+    	return meal;
     }
 }

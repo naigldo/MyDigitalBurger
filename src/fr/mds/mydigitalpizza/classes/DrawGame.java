@@ -1,14 +1,14 @@
 package fr.mds.mydigitalpizza.classes;
 
-public class Coke extends ColdDrink {
+public class DrawGame extends Game {
 	private String name;
 	private float price;
 	
-	public Coke() {
-		this.name = "Coca cola";
-		this.price = 2;
+	public DrawGame() {
+		name = "dessin";
+		price = 0;
 	}
-	
+
 	public String name() {
 		// TODO Auto-generated method stub
 		return this.name;
@@ -17,10 +17,12 @@ public class Coke extends ColdDrink {
 	@Override
 	public float price() {
 		// TODO Auto-generated method stub
-		return price;
+		return this.price;
 	}
 	
+	@Override
 	public String toString() {
-		return "Le "+this.name+" coûte "+this.price+" euros.";
+		// TODO Auto-generated method stub
+		return "Le jeu est un "+this.name;
 	}
 }
